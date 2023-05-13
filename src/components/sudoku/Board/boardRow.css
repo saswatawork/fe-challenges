@@ -1,0 +1,15 @@
+
+
+.sudoku-board__row:nth-child(3n){
+    border-bottom: 2px solid blue;
+}
+
+
+
+.sudoku-board__row:last-child{
+    border-bottom: 1px solid #000;
+}
+
+.sudoku-board__row:first-child {     
+    border-top: 1px solid #000;
+}
