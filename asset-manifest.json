@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/fe-challenges/static/css/main.7410b67d.css",
+    "main.js": "/fe-challenges/static/js/main.c2afc055.js",
+    "static/js/787.5208a524.chunk.js": "/fe-challenges/static/js/787.5208a524.chunk.js",
+    "index.html": "/fe-challenges/index.html",
+    "main.7410b67d.css.map": "/fe-challenges/static/css/main.7410b67d.css.map",
+    "main.c2afc055.js.map": "/fe-challenges/static/js/main.c2afc055.js.map",
+    "787.5208a524.chunk.js.map": "/fe-challenges/static/js/787.5208a524.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7410b67d.css",
+    "static/js/main.c2afc055.js"
+  ]
+}
