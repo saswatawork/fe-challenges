@@ -10,3 +10,10 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+This repository contains Game like
+
+- [Tic Tac Toe](https://saswatawork.github.io/tic-tac-toe) - [code](https://github.com/saswatawork/fe-challenges/tree/main/src/components/tic-tac-toe)
+- [Sudoku](https://saswatawork.github.io/sudoku) - [code](https://github.com/saswatawork/fe-challenges/tree/main/src/components/sudoku)
+- [Connect Four](https://saswatawork.github.io/connect-four) - [code](https://github.com/saswatawork/fe-challenges/tree/main/src/components/connectFour)
+- [To do list](https://saswatawork.github.io/to-do-list) - [code](https://github.com/saswatawork/fe-challenges/tree/main/src/components/toDoList)
