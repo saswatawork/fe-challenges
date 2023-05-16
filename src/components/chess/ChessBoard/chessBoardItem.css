@@ -1,0 +1,16 @@
+.chess-board__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    min-width: 50px;
+    min-height: 50px;
+    border: 1px solid #000;
+}
+
+.chess-board__item:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+

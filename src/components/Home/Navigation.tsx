@@ -34,6 +34,9 @@ export const Navigation = (): JSX.Element => {
             <li>
               <Link to="/sudoku">Sudoku</Link>
             </li>
+            <li>
+              <Link to="/chess">Chess</Link>
+            </li>
           </ul>
         </li>
       </ul>
