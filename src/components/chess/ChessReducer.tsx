@@ -1,6 +1,8 @@
 import { getDefaultBoard } from "./utils/getDefaultBoard";
 import { ActionProps, ChessInitialState } from "./utils/types";
 
+console.log("getDefaultBoard", getDefaultBoard());
+
 export const chessInitialState: ChessInitialState = {
   chessBoard: getDefaultBoard(),
 };

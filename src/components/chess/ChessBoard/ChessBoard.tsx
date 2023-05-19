@@ -11,9 +11,14 @@ export const ChessBoard = (): JSX.Element => {
   return (
     <div className="chess-board">
       {chessBoard.map((boardRow, row) => (
-        <ChessBoardRow>
+        <ChessBoardRow row={row} key={row}>
           {boardRow.map((boardItem, col) => (
-            <ChessBoardItem row={row} col={col} />
+            <ChessBoardItem
+              row={row}
+              col={col}
+              val={boardItem}
+              key={`${row}-${col}`}
+            />
           ))}
         </ChessBoardRow>
       ))}

@@ -12,8 +12,30 @@ export interface ActionProps {
 export interface BoardItem {
   row: number;
   col: number;
+  val: ChessBoardItem;
 }
 
+export interface ChessBoardItem {
+  player: Player | null;
+  piece: ChessPieces | null;
+}
+
+export type ChessBoard = Array<Array<ChessBoardItem>>;
+
 export interface ChessInitialState {
-  chessBoard: Array<Array<null>>;
+  chessBoard: ChessBoard;
+}
+
+export enum Player {
+  WHITE = "white",
+  BLACK = "black",
+}
+
+export enum ChessPieces {
+  PAWN = "pawn",
+  ROOK = "rook",
+  KNIGHT = "knight",
+  BISHOP = "bishop",
+  KING = "king",
+  QUEEN = "queen",
 }
