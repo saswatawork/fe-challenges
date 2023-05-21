@@ -1,29 +1,50 @@
 import { ReactNode } from "react";
+import { ChessBoardClass } from "./pieces/ChessBoardClass";
 
 export interface ChildrenProps {
   children: ReactNode | ReactNode[];
 }
 
+export type Row = number;
+export type Col = number;
 export interface ActionProps {
   type: string;
-  payload: any;
+  payload?: any;
+}
+
+export interface BoxItem {
+  row: Row;
+  col: Col;
 }
 
 export interface BoardItem {
-  row: number;
-  col: number;
+  row: Row;
+  col: Col;
   val: ChessBoardItem;
+}
+
+export interface SelectedBoardItem extends BoardItem {
+  val: SelectedChessBoardItem;
+}
+
+interface SelectedChessBoardItem extends ChessBoardItem {
+  player: Player;
+  piece: ChessPieces;
 }
 
 export interface ChessBoardItem {
   player: Player | null;
   piece: ChessPieces | null;
+  valid: boolean;
 }
 
 export type ChessBoard = Array<Array<ChessBoardItem>>;
 
 export interface ChessInitialState {
+  chessBoardObj: ChessBoardClass | null;
   chessBoard: ChessBoard;
+  playerTurn: Player;
+  activePiece: SelectedBoardItem | null;
 }
 
 export enum Player {

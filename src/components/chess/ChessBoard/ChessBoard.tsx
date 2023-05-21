@@ -8,6 +8,7 @@ export const ChessBoard = (): JSX.Element => {
   const {
     chessState: { chessBoard },
   } = useChess();
+
   return (
     <div className="chess-board">
       {chessBoard.map((boardRow, row) => (
