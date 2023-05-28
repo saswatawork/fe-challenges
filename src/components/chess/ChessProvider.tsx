@@ -61,12 +61,13 @@ export const ChessProvider = ({ children }: ChildrenProps) => {
   const getChessPieceMove = useCallback(
     (boardItem: SelectedBoardItem, playerTurn: Player) => {
       const chessBoardObj = chessState.chessBoardObj as ChessBoardClass;
+      chessBoardObj.cleanActiveBoardItem();
       chessBoardObj.activeBoardItem = boardItem;
       chessBoardObj.playerTurn = playerTurn;
-      const board = chessBoardObj.getValidMove();
+      chessBoardObj.getValidMove();
       chessDispatch({
         type: Actions.UPDATE_BOARD,
-        payload: { chessBoard: board, activePiece: boardItem },
+        payload: { chessBoard: chessBoardObj.board, activePiece: boardItem },
       });
     },
     [chessState.chessBoardObj]
@@ -75,7 +76,7 @@ export const ChessProvider = ({ children }: ChildrenProps) => {
   const moveChessPiece = useCallback(
     (moveTo: BoxItem, playerTurn: Player) => {
       const chessBoardObj = chessState.chessBoardObj as ChessBoardClass;
-      chessBoardObj.moveChessPiece(moveTo);
+      chessBoardObj.move(moveTo);
       chessBoardObj.cleanActiveBoardItem();
       chessBoardObj.playerTurn =
         playerTurn === Player.WHITE ? Player.BLACK : Player.WHITE;

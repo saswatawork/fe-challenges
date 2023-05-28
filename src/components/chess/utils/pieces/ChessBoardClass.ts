@@ -5,19 +5,28 @@ import {
   Player,
   SelectedBoardItem,
 } from "../types";
+import { BishopClass } from "./BishopClass";
 import { PawnClass } from "./PawnClass";
+import { QueenClass } from "./QueenClass";
+import { RookClass } from "./RookClass";
 
 export class ChessBoardClass {
   boardItem: SelectedBoardItem | null;
   board: ChessBoard;
-  _pawn: PawnClass | null;
   _playerTurn: Player;
+  _pawn: PawnClass | null;
+  _bishop: BishopClass | null;
+  _rook: RookClass | null;
+  _queen: QueenClass | null;
 
   constructor(board: ChessBoard) {
     this.board = board;
     this.boardItem = null;
-    this._pawn = null;
     this._playerTurn = Player.WHITE;
+    this._pawn = null;
+    this._bishop = null;
+    this._rook = null;
+    this._queen = null;
   }
 
   set playerTurn(player: Player) {
@@ -32,6 +41,21 @@ export class ChessBoardClass {
         this.activeBoardItem,
         this._playerTurn
       );
+      this.bishop = new BishopClass(
+        this.board,
+        this.activeBoardItem,
+        this._playerTurn
+      );
+      this.rook = new RookClass(
+        this.board,
+        this.activeBoardItem,
+        this._playerTurn
+      );
+      this.queen = new QueenClass(
+        this.board,
+        this.activeBoardItem,
+        this._playerTurn
+      );
     } else {
       this.boardItem = null;
       this.pawn = null;
@@ -40,7 +64,7 @@ export class ChessBoardClass {
 
   get activeBoardItem(): SelectedBoardItem {
     if (!this.boardItem) {
-      throw new Error("Active board Item item can not be null");
+      throw new Error("Active board Item can not be null");
     }
     return this.boardItem;
   }
@@ -51,26 +75,54 @@ export class ChessBoardClass {
 
   get pawn(): PawnClass {
     if (!this._pawn) {
-      throw new Error("Active board Item item can not be null");
+      throw new Error("Pawn can not be null");
     }
     return this._pawn;
+  }
+
+  set bishop(pawn: BishopClass | null) {
+    this._bishop = pawn;
+  }
+
+  get bishop(): BishopClass {
+    if (!this._bishop) {
+      throw new Error("Bishop can not be null");
+    }
+    return this._bishop;
+  }
+
+  set rook(rook: RookClass | null) {
+    this._rook = rook;
+  }
+
+  get rook(): RookClass {
+    if (!this._rook) {
+      throw new Error("Rook can not be null");
+    }
+    return this._rook;
+  }
+
+  set queen(queen: QueenClass | null) {
+    this._queen = queen;
+  }
+
+  get queen(): QueenClass {
+    if (!this._queen) {
+      throw new Error("Queen can not be null");
+    }
+    return this._queen;
   }
 
   getValidMove() {
     switch (this.activeBoardItem.val.piece) {
       case ChessPieces.PAWN:
         return this.pawn.getMove();
-
-      default:
-        break;
-    }
-  }
-
-  moveChessPiece(moveTo: BoxItem) {
-    switch (this.activeBoardItem.val.piece) {
-      case ChessPieces.PAWN:
-        return this.pawn.movePawn(moveTo);
-
+      case ChessPieces.BISHOP:
+        return this.bishop.getMove();
+      case ChessPieces.ROOK:
+        return this.rook.getMove();
+      case ChessPieces.QUEEN:
+        return this.queen.getMove();
       default:
         break;
     }
@@ -79,7 +131,7 @@ export class ChessBoardClass {
   cleanActiveBoardItem() {
     let boardCopy = [...this.board];
     this.board.forEach((boardRow, row) =>
-      boardRow.forEach((boardItem, col) => {
+      boardRow.forEach((_, col) => {
         boardCopy[row][col].valid = false;
       })
     );
@@ -87,25 +139,17 @@ export class ChessBoardClass {
     this.activeBoardItem = null;
   }
 
-  //   set board(board: ChessBoard) {
-  //     this._board = board;
-  //   }
-
-  //   get board(): ChessBoard {
-  //     if (!this._board) {
-  //       throw new Error("Board whould be an array");
-  //     }
-  //     return this._board;
-  //   }
-
-  //   set boardItem(boardItem: BoardItem) {
-  //     this.boardItem = boardItem;
-  //   }
-
-  //   get boardItem(): BoardItem {
-  //     if (!this._boardItem) {
-  //       throw new Error("No board item selected");
-  //     }
-  //     return this._boardItem;
-  //   }
+  move({ row, col }: BoxItem) {
+    const boardCopy = [...this.board];
+    boardCopy[row][col].piece =
+      this.board[this.activeBoardItem.row][this.activeBoardItem.col].piece;
+    boardCopy[row][col].player =
+      this.board[this.activeBoardItem.row][this.activeBoardItem.col].player;
+    boardCopy[row][col].valid = false;
+    boardCopy[this.activeBoardItem.row][this.activeBoardItem.col].piece = null;
+    boardCopy[this.activeBoardItem.row][this.activeBoardItem.col].player = null;
+    boardCopy[this.activeBoardItem.row][this.activeBoardItem.col].valid = false;
+    this.board = boardCopy;
+    return this.board;
+  }
 }

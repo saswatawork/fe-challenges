@@ -6,11 +6,12 @@ import "./chessboard.css";
 
 export const ChessBoard = (): JSX.Element => {
   const {
-    chessState: { chessBoard },
+    chessState: { chessBoard, playerTurn },
   } = useChess();
 
   return (
     <div className="chess-board">
+      <h5>{playerTurn} turn</h5>
       {chessBoard.map((boardRow, row) => (
         <ChessBoardRow row={row} key={row}>
           {boardRow.map((boardItem, col) => (

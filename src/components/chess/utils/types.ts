@@ -60,3 +60,11 @@ export enum ChessPieces {
   KING = "king",
   QUEEN = "queen",
 }
+
+export type MaxMove = number | null;
+export interface CreateMoveProps {
+  updatedBoard: ChessBoard;
+  row: Row;
+  col: Col;
+  maxMove: MaxMove;
+}
