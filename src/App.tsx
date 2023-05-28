@@ -5,6 +5,7 @@ import { ToDoList } from "./components/toDoList";
 import { ConnectFour } from "./components/connectFour";
 import { Sudoku } from "./components/sudoku";
 import { Home } from "./components/Home";
+import { Chess } from "./components/chess";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="to-do-list" element={<ToDoList />} />
             <Route path="connect-four" element={<ConnectFour />} />
             <Route path="sudoku" element={<Sudoku />} />
+            <Route path="chess" element={<Chess />}></Route>
             <Route path="*" element={<h1>Wrong URL</h1>} />
           </Route>
         </Routes>
